@@ -1,0 +1,16 @@
+{
+	"circuit": [
+	  {"C1": [1], "DA1": [3,6,10]},
+	  {"elementNumber": [3,6], "elementNumber": [0,1], "elementNumber": [0]}
+	],
+	"elements": [
+	  {"C1":"smd0805"},
+	  {"DA1":"ATmega8TQFP"},
+	  {"elementNumber":"type"}
+	],
+	"types": [
+	  {"smd0805":"%LIB_DIR%/smd0805"},
+	  {"type":"dir"}
+	]
+}
+//{"elementNumber": [portnumber,portnumber], "elementNumber": [portnumber,portnumber]},
