@@ -29,8 +29,8 @@ public class CubeTest {
         Cube.Dot zeroDot = new Cube.Dot(0.0, 0.0, 0.0);
         testCube = new Cube(zeroDot, zeroDot);
         assertNotNull(testCube);
-        assertEquals(zeroDot, testCube.a);
-        assertEquals(zeroDot, testCube.b);
+        assertEquals(zeroDot, testCube.max);
+        assertEquals(zeroDot, testCube.min);
     }
 
     @Test(expected = NullPointerException.class)

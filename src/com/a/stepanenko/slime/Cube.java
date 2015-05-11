@@ -10,17 +10,17 @@ import org.apache.log4j.Logger;
  */
 public class Cube {
     private static final Logger log = Logger.getLogger(Cube.class);
-    public final Dot a;
-    public final Dot b;
+    public final Dot max;
+    public final Dot min;
 
-    public Cube(@NotNull Dot a, @NotNull Dot b) {
-        if (a == null || b == null) {
+    public Cube(@NotNull Dot max, @NotNull Dot min) {
+        if (max == null || min == null) {
             NullPointerException exception = new NullPointerException("Dot might be not null.");
             log.error(exception.getMessage(), exception);
             throw exception;
         }
-        this.a = a;
-        this.b = b;
+        this.max = max;
+        this.min = min;
     }
 
     public static class Dot {
@@ -38,5 +38,62 @@ public class Cube {
             this.y = y;
             this.z = z;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Dot)) return false;
+
+            Dot dot = (Dot) o;
+
+            if (!x.equals(dot.x)) return false;
+            if (!y.equals(dot.y)) return false;
+            return z.equals(dot.z);
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = x.hashCode();
+            result = 31 * result + y.hashCode();
+            result = 31 * result + z.hashCode();
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return "Dot{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    ", z=" + z +
+                    '}';
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cube)) return false;
+
+        Cube cube = (Cube) o;
+
+        if (!max.equals(cube.max)) return false;
+        return min.equals(cube.min);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = max.hashCode();
+        result = 31 * result + min.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Cube{" +
+                "max=" + max +
+                ", min=" + min +
+                '}';
     }
 }
