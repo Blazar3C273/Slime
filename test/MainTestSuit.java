@@ -8,7 +8,10 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        MainTest.class
+        MainTest.class,
+        CubeTest.class,
+        STLLoaderTest.class
+
 })
 public class MainTestSuit {
 }

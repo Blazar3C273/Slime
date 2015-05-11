@@ -1,7 +1,34 @@
 {
 	"circuit": [
-	  {"C1": [1], "DA1": [3,6,10]},
-	  {"elementNumber": [3,6], "elementNumber": [0,1], "elementNumber": [0]}
+      {
+        "C1": [1],
+        "DA1": [
+          3,
+          6,
+          10
+        ],
+        "this is element of the zero's chain": ["this is element port index, included in zero chain"]
+      },
+      {
+        "C1": [2],
+        "DA1": [
+          4,
+          7,
+          11
+        ],
+        "R1": [0]
+      },
+      {
+        "elementNumber": [
+          3,
+          6
+        ],
+        "elementNumber": [
+          0,
+          1
+        ],
+        "elementNumber": [0]
+      }
 	],
 	"elements": [
 	  {"C1":"smd0805"},
@@ -9,7 +36,22 @@
 	  {"elementNumber":"type"}
 	],
 	"types": [
-	  {"smd0805":"%LIB_DIR%/smd0805"},
+      {
+        "smd0805": "%LIB_DIR%/smd0805",
+        "описание описывающего паралелепипеда, в это месте записан объем": [
+          "x-dimension",
+          "y-dimension",
+          "z-dimension"
+        ]
+      },
+      {
+        "smd0805": "%LIB_DIR%/smd0805",
+        "336": [
+          "7",
+          "6",
+          "8"
+        ]
+      },
 	  {"type":"dir"}
 	]
 }

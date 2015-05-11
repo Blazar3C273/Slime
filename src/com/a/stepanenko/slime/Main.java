@@ -14,7 +14,9 @@ public class Main {
                 System.out.println(HELP_STRING);
                 log.info("Massage string in std-out"+HELP_STRING);
             }
+
         log.fatal("some fatal massage for testing");
+
 
     /*
 	* find file
