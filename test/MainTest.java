@@ -4,6 +4,8 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.fest.assertions.core.Condition;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
 /**
  * Created by Anatoliy on 11.05.2015.
  */
+@RunWith(JUnit4.class)
 public class MainTest {
     private Appender appender;
     private List<LoggingEvent> loggingEvents;
@@ -33,12 +36,8 @@ public class MainTest {
             protected void append(LoggingEvent loggingEvent) {
                 loggingEvents.add(loggingEvent);
             }
-
             @Override
-            public void close() {
-
-            }
-
+            public void close() {}
             @Override
             public boolean requiresLayout() {
                 return false;
@@ -58,4 +57,5 @@ public class MainTest {
         main.main(new String[]{"-h"});
         assertThat(loggingEvents).hasSize(3);
     }
+
 }

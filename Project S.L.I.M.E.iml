@@ -21,5 +21,6 @@
     </orderEntry>
     <orderEntry type="library" name="apache-log4j:log4j:1.2.8" level="project" />
     <orderEntry type="library" name="org.easytesting:fest-assert-core:2.0M10" level="project" />
+    <orderEntry type="library" name="ru.lanwen.verbalregex:java-verbal-expressions:1.2" level="project" />
   </component>
 </module>
