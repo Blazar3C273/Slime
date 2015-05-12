@@ -60,14 +60,15 @@ public class StlLoader {
             } else {
                 Double xMin, xMax, yMin, yMax, zMin, zMax;
                 vertexes.sort((o1, o2) -> o1.x.compareTo(o2.x));
-                xMax = vertexes.get(0).x;
-                xMin = vertexes.get(vertexes.size() - 1).x;
+                xMin = vertexes.get(0).x;
+                xMax = vertexes.get(vertexes.size() - 1).x;
                 vertexes.sort(((o1, o2) -> o1.y.compareTo(o2.y)));
-                yMax = vertexes.get(0).y;
-                yMin = vertexes.get(vertexes.size() - 1).y;
+                yMin = vertexes.get(0).y;
+                yMax = vertexes.get(vertexes.size() - 1).y;
                 vertexes.sort(((o1, o2) -> o1.z.compareTo(o2.z)));
-                zMax = vertexes.get(0).z;
-                zMin = vertexes.get(vertexes.size() - 1).z;
+                zMin = vertexes.get(0).z;
+                zMax = vertexes.get(vertexes.size() - 1).z;
+
                 return new Cube(new Cube.Dot(xMax, yMax, zMax), new Cube.Dot(xMin, yMin, zMin));
             }
 

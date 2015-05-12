@@ -9,8 +9,7 @@ import org.junit.runners.JUnit4;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 
 /**
@@ -64,13 +63,25 @@ public class STLLoaderTest {
     @Test
     public void gettingCubeFitalTest() throws IOException, WrongFileFormat {
         Cube.Dot dotA, dotB;
-        dotA = new Cube.Dot(0.0, 0.0, 0.0);
-        dotB = new Cube.Dot(5.0, 5.0, 5.0);
+        dotB = new Cube.Dot(0.0, 0.0, 0.0);
+        dotA = new Cube.Dot(5.0, 5.0, 5.0);
         Cube testCube = new Cube(dotA, dotB);
         Cube loadedCube = StlLoader.getSurroundedCube(Paths.get("./test/size5Cube.stl"));
         assertEquals("Cube must be equal", testCube, loadedCube);
-
     }
 
+    @Test
+    public void multipleFegureTest() throws WrongFileFormat, IOException {
+        log.info(StlLoader.getSurroundedCube(Paths.get("./test/rotate_extrude.stl")));
+    }
 
+    @Test
+    public void testIsCube() throws Exception, WrongFileFormat {
+        Cube cube = StlLoader.getSurroundedCube(Paths.get("./test/parallelepiped.stl"));
+        log.info(cube);
+        double cubeV = Math.pow(cube.edgeLength, 3.0);
+        log.info("cube volume is:" + cubeV);
+        assertTrue("cube volume must be more, than parallelepiped's volume. cube volume is" + cubeV, cubeV > 4);
+
+    }
 }

@@ -10,7 +10,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         MainTest.class,
         CubeTest.class,
-        STLLoaderTest.class
+        STLLoaderTest.class,
+        OctreeTest.class
+
 
 })
 public class MainTestSuit {

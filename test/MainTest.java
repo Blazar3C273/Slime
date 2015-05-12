@@ -4,7 +4,6 @@ import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggingEvent;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -19,7 +18,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
  * Created by Anatoliy on 11.05.2015.
  */
 @RunWith(JUnit4.class)
-@Ignore
+
 public class MainTest {
     private Appender appender;
     private List<LoggingEvent> loggingEvents;
