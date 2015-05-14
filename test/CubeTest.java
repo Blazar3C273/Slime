@@ -1,4 +1,5 @@
 import com.a.stepanenko.slime.Cube;
+import com.a.stepanenko.slime.Dot;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class CubeTest {
 
     @Test
     public void readWriteTest() {
-        Cube.Dot zeroDot = new Cube.Dot(0.0, 0.0, 0.0);
+        Dot zeroDot = new Dot(0.0, 0.0, 0.0);
         testCube = new Cube(zeroDot, zeroDot);
         assertNotNull(testCube);
         assertEquals(zeroDot, testCube.max);
@@ -40,7 +41,7 @@ public class CubeTest {
 
     @Test(expected = NullPointerException.class)
     public void nullDimensionPointerExeptionTest() {
-        new Cube(new Cube.Dot(null, 0.0, 0.0), new Cube.Dot(0.0, 0.0, 0.0));
+        new Cube(new Dot(null, 0.0, 0.0), new Dot(0.0, 0.0, 0.0));
     }
 
     @After

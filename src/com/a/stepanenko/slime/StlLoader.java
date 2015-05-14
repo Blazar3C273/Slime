@@ -18,7 +18,10 @@ import java.util.ArrayList;
 public class StlLoader {
     private static final Logger log = Logger.getLogger(StlLoader.class);
 
-    public static Cube getSurroundedCube(@NotNull Path stlPath) throws IOException, WrongFileFormat {
+    /**
+     * @return Polygon vertices indexes is (3n+0,3n+1,3n+2), n = [0..array.size()/3]
+     */
+    public static ArrayList<Dot> getVertices(@NotNull Path stlPath) throws IOException, WrongFileFormat {
         if (!Files.isReadable(stlPath) || Files.isDirectory(stlPath)) {
             IOException exception = new IOException("Path is not readable or this is not File");
             log.error(exception.getMessage(), exception);
@@ -28,7 +31,7 @@ public class StlLoader {
             String line;
             boolean isFirstString = true;
             boolean wasCloseString = false;
-            ArrayList<Cube.Dot> vertexes = new ArrayList<>();
+            ArrayList<Dot> vertexes = new ArrayList<>();
             while ((line = reader.readLine()) != null) {
                 if (isFirstString && !line.startsWith("solid "))
                     throw new WrongFileFormat("this file not valid ASCII STL file");
@@ -39,7 +42,6 @@ public class StlLoader {
                 if (line.startsWith("endsolid "))
                     wasCloseString = true;
 
-
                 if (line.startsWith("      vertex")) {//TODO: fix this. why regexp not working!?
                     final Double x, y, z;
 
@@ -49,7 +51,7 @@ public class StlLoader {
                     x = Double.parseDouble(line.substring(firstIndex, secondLastIndex));
                     y = Double.parseDouble(line.substring(secondLastIndex, thirdLastIndex));
                     z = Double.parseDouble(line.substring(thirdLastIndex));
-                    vertexes.add(new Cube.Dot(x, y, z));
+                    vertexes.add(new Dot(x, y, z));
                 }
 
             }
@@ -58,20 +60,11 @@ public class StlLoader {
             if (vertexes.isEmpty()) {
                 throw new WrongFileFormat("in file no vertices");
             } else {
-                Double xMin, xMax, yMin, yMax, zMin, zMax;
-                vertexes.sort((o1, o2) -> o1.x.compareTo(o2.x));
-                xMin = vertexes.get(0).x;
-                xMax = vertexes.get(vertexes.size() - 1).x;
-                vertexes.sort(((o1, o2) -> o1.y.compareTo(o2.y)));
-                yMin = vertexes.get(0).y;
-                yMax = vertexes.get(vertexes.size() - 1).y;
-                vertexes.sort(((o1, o2) -> o1.z.compareTo(o2.z)));
-                zMin = vertexes.get(0).z;
-                zMax = vertexes.get(vertexes.size() - 1).z;
 
-                return new Cube(new Cube.Dot(xMax, yMax, zMax), new Cube.Dot(xMin, yMin, zMin));
+                return vertexes;
             }
 
         }
     }
+
 }

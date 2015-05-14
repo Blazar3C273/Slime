@@ -1,6 +1,8 @@
 import com.a.stepanenko.slime.Cube;
+import com.a.stepanenko.slime.Dot;
 import com.a.stepanenko.slime.StlLoader;
 import com.a.stepanenko.slime.WrongFileFormat;
+import com.a.stepanenko.slime.octree.Octree;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,62 +28,63 @@ public class STLLoaderTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void testNullPointerPath() throws Exception, WrongFileFormat {
-        StlLoader.getSurroundedCube(null);
+    public void testNullPointerPath() throws Exception {
+        StlLoader.getVertices(null);
     }
 
     @Test(expected = IOException.class)
-    public void testCantReadExeption() throws Exception, WrongFileFormat {
-        StlLoader.getSurroundedCube(Paths.get("./missingFolder"));
+    public void testCantReadExeption() throws Exception {
+        StlLoader.getVertices(Paths.get("./missingFolder"));
     }
 
     @Test(expected = IOException.class)
     public void testNotFileExeption() throws IOException, WrongFileFormat {
-        StlLoader.getSurroundedCube(Paths.get("./"));
+        StlLoader.getVertices(Paths.get("./"));
     }
 
     @Test(expected = WrongFileFormat.class)
-    public void testStlParsing() throws IOException, WrongFileFormat {
-        StlLoader.getSurroundedCube(Paths.get("./src/log4j.properties"));
+    public void testStlParsing() throws Exception {
+        StlLoader.getVertices(Paths.get("./src/log4j.properties"));
     }
 
     @Test
-    public void testValidStlParsing() throws IOException, WrongFileFormat {
-        log.info(StlLoader.getSurroundedCube(Paths.get("./test/valid_test.stl")));
+    public void testValidStlParsing() throws Exception {
+        StlLoader.getVertices(Paths.get("./test/stl's/valid_test.stl"));
     }
 
     @Test(expected = WrongFileFormat.class)
-    public void testInvalidStlParsing() throws IOException, WrongFileFormat {
-        StlLoader.getSurroundedCube(Paths.get("./test/no_endsolid_test.stl"));
+    public void testInvalidStlParsing() throws Exception {
+        StlLoader.getVertices(Paths.get("./test/stl's/no_endsolid_test.stl"));
     }
 
     @Test(expected = WrongFileFormat.class)
-    public void parsingVertex() throws IOException, WrongFileFormat {
-        StlLoader.getSurroundedCube(Paths.get("./test/noVertex.stl"));
+    public void parsingVertex() throws Exception {
+        StlLoader.getVertices(Paths.get("./test/stl's/noVertex.stl"));
     }
 
     @Test
-    public void gettingCubeFitalTest() throws IOException, WrongFileFormat {
-        Cube.Dot dotA, dotB;
-        dotB = new Cube.Dot(0.0, 0.0, 0.0);
-        dotA = new Cube.Dot(5.0, 5.0, 5.0);
+    public void gettingCubeFitalTest() throws Exception {
+        Dot dotA, dotB;
+        dotB = new Dot(0.0, 0.0, 0.0);
+        dotA = new Dot(5.0, 5.0, 5.0);
         Cube testCube = new Cube(dotA, dotB);
-        Cube loadedCube = StlLoader.getSurroundedCube(Paths.get("./test/size5Cube.stl"));
+        Cube loadedCube = Octree.getSurroundingCube(StlLoader.getVertices(Paths.get("./test/stl's/size5Cube.stl")));
         assertEquals("Cube must be equal", testCube, loadedCube);
     }
 
     @Test
     public void multipleFegureTest() throws WrongFileFormat, IOException {
-        log.info(StlLoader.getSurroundedCube(Paths.get("./test/rotate_extrude.stl")));
+        StlLoader.getVertices(Paths.get("./test/stl's/rotate_extrude.stl"));
     }
 
     @Test
     public void testIsCube() throws Exception, WrongFileFormat {
-        Cube cube = StlLoader.getSurroundedCube(Paths.get("./test/parallelepiped.stl"));
+        Cube cube = Octree.getSurroundingCube(StlLoader.getVertices(Paths.get("./test/stl's/parallelepiped.stl")));
         log.info(cube);
         double cubeV = Math.pow(cube.edgeLength, 3.0);
         log.info("cube volume is:" + cubeV);
         assertTrue("cube volume must be more, than parallelepiped's volume. cube volume is" + cubeV, cubeV > 4);
 
     }
+
 }

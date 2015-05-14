@@ -8,10 +8,11 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        MainTest.class,
+        BoxTriangleOverlapTest.class,
         CubeTest.class,
         STLLoaderTest.class,
-        OctreeTest.class
+        OctreeTest.class,
+        BoxTriangleOverlapTest.class
 
 
 })
