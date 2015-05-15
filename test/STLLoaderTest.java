@@ -2,7 +2,7 @@ import com.a.stepanenko.slime.Cube;
 import com.a.stepanenko.slime.Dot;
 import com.a.stepanenko.slime.StlLoader;
 import com.a.stepanenko.slime.WrongFileFormat;
-import com.a.stepanenko.slime.octree.Octree;
+import com.a.stepanenko.slime.octree.OctreeFactory;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,7 +68,7 @@ public class STLLoaderTest {
         dotB = new Dot(0.0, 0.0, 0.0);
         dotA = new Dot(5.0, 5.0, 5.0);
         Cube testCube = new Cube(dotA, dotB);
-        Cube loadedCube = Octree.getSurroundingCube(StlLoader.getVertices(Paths.get("./test/stl's/size5Cube.stl")));
+        Cube loadedCube = OctreeFactory.getSurroundingCube(StlLoader.getVertices(Paths.get("./test/stl's/size5Cube.stl")));
         assertEquals("Cube must be equal", testCube, loadedCube);
     }
 
@@ -79,7 +79,7 @@ public class STLLoaderTest {
 
     @Test
     public void testIsCube() throws Exception, WrongFileFormat {
-        Cube cube = Octree.getSurroundingCube(StlLoader.getVertices(Paths.get("./test/stl's/parallelepiped.stl")));
+        Cube cube = OctreeFactory.getSurroundingCube(StlLoader.getVertices(Paths.get("./test/stl's/parallelepiped.stl")));
         log.info(cube);
         double cubeV = Math.pow(cube.edgeLength, 3.0);
         log.info("cube volume is:" + cubeV);
