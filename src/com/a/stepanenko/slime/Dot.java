@@ -54,4 +54,12 @@ public class Dot {
                 ", z=" + z +
                 '}';
     }
+
+    public double[] getDot() {
+        return new double[]{x, y, z};
+    }
+
+    public float[] getDotAsFloat() {
+        return new float[]{x.floatValue(), y.floatValue(), z.floatValue()};
+    }
 }
