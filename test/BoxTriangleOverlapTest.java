@@ -14,6 +14,7 @@ import static org.junit.Assert.assertEquals;
  * J.
  * Created by Anatoliy on 14.05.2015.
  */
+
 @RunWith(Parameterized.class)
 public class BoxTriangleOverlapTest {
     private static final Logger log = Logger.getLogger(BoxTriangleOverlapTest.class);
@@ -31,7 +32,7 @@ public class BoxTriangleOverlapTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        ArrayList<Object[]> temp = new ArrayList<Object[]>();
+        ArrayList<Object[]> temp = new ArrayList<>();
         //expected result,cube center coordinates,          cube edge half size, polygone vertex coordinates
         temp.add(new Object[]{true, new float[]{7.240014f, 0.9422916f, 4.853937f}, new float[]{5, 5, 5}, new float[][]{{1.6656119f, 4.822916f, 1.2002689f},
                 {1.7147398f, 0.7709712f, 3.6267729f},
