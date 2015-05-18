@@ -1,5 +1,7 @@
 package com.a.stepanenko.slime;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.sun.istack.internal.NotNull;
 import org.apache.log4j.Logger;
 
@@ -9,10 +11,18 @@ import org.apache.log4j.Logger;
  * Created by Anatoliy on 13.05.2015.
  */
 public class Dot {
+    @Expose(serialize = false, deserialize = false)
     private Logger log = Logger.getLogger(Dot.class);
+    @Expose
+    @SerializedName("x")
     public final Double x;
+    @Expose
+    @SerializedName("y")
     public final Double y;
+    @Expose
+    @SerializedName("z")
     public final Double z;
+
 
     public Dot(@NotNull Double x, @NotNull Double y, @NotNull Double z) {
         if (x == null || y == null || z == null) {
@@ -33,8 +43,7 @@ public class Dot {
         Dot dot = (Dot) o;
 
         if (!x.equals(dot.x)) return false;
-        if (!y.equals(dot.y)) return false;
-        return z.equals(dot.z);
+        return y.equals(dot.y) && z.equals(dot.z);
 
     }
 

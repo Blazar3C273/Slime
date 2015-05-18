@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Anatoliy on 15.05.2015.
  */
 public class OctreeFactory {
-    static final short MAX_DEEP_LEVEL = 8; //TODO: tweak this value.
+    static final short MAX_DEEP_LEVEL = 5; //TODO: tweak this value.
     private static final Logger log = Logger.getLogger(OctreeFactory.class);
 
     public static Octree makeOctree(ArrayList<Dot> vertices) throws Exception {
@@ -24,29 +24,29 @@ public class OctreeFactory {
             polygons.add(new Polygon(new Dot[]{vertices.get(3 * i), vertices.get(3 * i + 1), vertices.get(3 * i + 2)}));
         }
 
-        Node rootNode = new Node(Node.NodeType.GRAY, null, MAX_DEEP_LEVEL, surroundingCube.getCubeCenter(), ((float) surroundingCube.edgeLength));
+        Node rootNode = new Node(Node.Type.GRAY, null, MAX_DEEP_LEVEL, surroundingCube.getCubeCenter(), ((float) surroundingCube.edgeLength));
         result.setRoot(rootNode);
         generateChildNodes(polygons, rootNode);
         return result;
     }
 
     private static void generateChildNodes(ArrayList<Polygon> polygons, Node parentNode) throws Exception {
-        if (parentNode.getType() == Node.NodeType.GRAY && parentNode.getDeepLevel() >= 0) {
+        if (parentNode.getType() == Node.Type.GRAY && parentNode.getDeepLevel() >= 0) {
             ArrayList<Node> nodes = new ArrayList<>();
             parentNode.setChildNodes(nodes);
             for (short i = 0; i < 8; i++) {
                 Dot center = calculateNodeCenter(parentNode, i);
                 float length = parentNode.length / 4;
-                Node.NodeType nodeType = getNodeType(polygons, center, length);
-                if (nodeType == Node.NodeType.GRAY && parentNode.getDeepLevel() == 0)
-                    nodeType = Node.NodeType.BLACK; // TODO important place. need testing.
-                nodes.add(new Node(nodeType,
+                Node.Type type = getNodeType(polygons, center, length);
+                if (type == Node.Type.GRAY && parentNode.getDeepLevel() == 1)
+                    type = Node.Type.BLACK; // TODO important place. need testing.
+                nodes.add(new Node(type,
                         parentNode,
                         (short) (parentNode.getDeepLevel() - 1),
                         center,
                         length));
             }
-            nodes.parallelStream().filter(node -> node.getType() == Node.NodeType.GRAY).parallel().forEach(node1 -> {
+            nodes.parallelStream().filter(node -> node.getType() == Node.Type.GRAY).parallel().forEach(node1 -> {
                 try {
                     generateChildNodes(polygons, node1);
                 } catch (Exception e) {
@@ -73,15 +73,14 @@ public class OctreeFactory {
                 new Dot(xMin, yMin, zMin));
     }
 
-    public static Node.NodeType getNodeType(ArrayList<Polygon> polygons, Dot center, float length) {
-
+    public static Node.Type getNodeType(ArrayList<Polygon> polygons, Dot center, float length) {
         for (Polygon polygon : polygons) {
             if (TriangleCubeOverlapTester.triBoxOverlap(center.getDotAsFloat(), new float[]{length / 2, length / 2, length / 2,}, polygon.getDotsAsFloat())) {
-                return Node.NodeType.GRAY;
+                return Node.Type.GRAY;
             }
         }
 
-        return Node.NodeType.WHITE;
+        return Node.Type.WHITE;
     }
 
     public static Dot calculateNodeCenter(Node parent, short number) throws Exception {

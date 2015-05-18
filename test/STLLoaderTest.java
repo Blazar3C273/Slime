@@ -78,7 +78,7 @@ public class STLLoaderTest {
     }
 
     @Test
-    public void testIsCube() throws Exception, WrongFileFormat {
+    public void testIsCube() throws Exception {
         Cube cube = OctreeFactory.getSurroundingCube(StlLoader.getVertices(Paths.get("./test/stl's/parallelepiped.stl")));
         log.info(cube);
         double cubeV = Math.pow(cube.edgeLength, 3.0);

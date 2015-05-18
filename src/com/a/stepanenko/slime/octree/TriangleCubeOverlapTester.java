@@ -333,11 +333,8 @@ public class TriangleCubeOverlapTester {
 	   /*  test if the box intersects the plane of the triangle */
 	   /*  compute plane equation of triangle: normal*x+d=0 */
         normal = cross(e0, e1);
-        if (TriangleCubeOverlapTester.planeBoxOverlap(normal, v0, boxhalfsize) == 0) {
-            return false;
-        }
+        return TriangleCubeOverlapTester.planeBoxOverlap(normal, v0, boxhalfsize) != 0;
 
-        return true; // box and triangle overlaps
     }
 
 }

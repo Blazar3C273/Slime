@@ -26,10 +26,8 @@ public class OctreeFactoryTest {
 
     @Test
     public void testMakeOctree() throws Exception {
-
         Octree octree = OctreeFactory.makeOctree(StlLoader.getVertices(Paths.get(TEST_FILE2)));
         log.debug(octree.toString());
-
     }
 
     @Test
@@ -42,7 +40,7 @@ public class OctreeFactoryTest {
     @Test
     public void testCalculateNodeCenter() throws Exception {
         float edgeLength = 6;
-        Node rootTestNode = new Node(Node.NodeType.BLACK, null, ((short) 0), new Dot(5d, 5d, 5d), edgeLength * 4);
+        Node rootTestNode = new Node(Node.Type.BLACK, null, ((short) 0), new Dot(5d, 5d, 5d), edgeLength * 4);
         Dot center = rootTestNode.center;
         Dot[] centerDots = new Dot[]{
                 new Dot(center.x - edgeLength, center.y - edgeLength, center.z + edgeLength),//0

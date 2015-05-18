@@ -1,6 +1,7 @@
 package com.a.stepanenko.slime.octree;
 
 import com.a.stepanenko.slime.Dot;
+import com.google.gson.annotations.Expose;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -11,12 +12,14 @@ import java.util.ArrayList;
  * Created by Anatoliy on 12.05.2015.
  */
 public class Node {
+    @Expose(serialize = false, deserialize = false)
     private static final Logger log = Logger.getLogger(Node.class);
     public final float length;
     public final Dot center;
     private final Node parent;
+    @Expose(serialize = false, deserialize = false)
     private ArrayList<Node> childNodes;
-    private NodeType type;
+    private Type type;
     private short deepLevel;
 
     /**
@@ -25,19 +28,19 @@ public class Node {
      * @param deepLevel
      * @param _length  */
 
-    public Node(NodeType nodeType, Node _parent,short deepLevel, Dot nodeCenter, float _length) throws Exception {
+    public Node(Type type, Node _parent, short deepLevel, Dot nodeCenter, float _length) throws Exception {
             this.parent = _parent;
             this.length = _length;
             this.center = nodeCenter;
-            this.type = nodeType;
+        this.type = type;
             this.deepLevel = deepLevel;
     }
 
-    public NodeType getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(NodeType type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
@@ -61,26 +64,12 @@ public class Node {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Node{").
-                append("length=").
-                append(length).
-                append(", center=").
-                append(center).append(", parent=").
-                append(parent).
-                append(", number of childNodes = ").
-                append(getNodeNumber()).
-                append(", type=").
-                append(type).
-                append(", deepLevel=").
-                append(deepLevel).
-                append('}');
-        return builder.toString();
+        return "Node{" + "length=" + length + ", center=" + center + ", type=" + type + ", deepLevel=" + deepLevel + '}';
     }
 
     public short getDeepLevel() {
         return deepLevel;
     }
 
-    public enum NodeType {WHITE,BLACK,GRAY}
+    public enum Type {WHITE, BLACK, GRAY}
 }

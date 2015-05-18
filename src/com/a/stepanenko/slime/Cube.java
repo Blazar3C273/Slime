@@ -59,8 +59,7 @@ public class Cube {
 
         Cube cube = (Cube) o;
 
-        if (!max.equals(cube.max)) return false;
-        return min.equals(cube.min);
+        return max.equals(cube.max) && min.equals(cube.min);
 
     }
 

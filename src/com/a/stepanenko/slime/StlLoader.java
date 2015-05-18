@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -39,18 +41,19 @@ public class StlLoader {
                     isFirstString = false;
                 }
 
-                if (line.startsWith("endsolid "))
+                if (line.startsWith("endsolid"))
                     wasCloseString = true;
-
-                if (line.startsWith("      vertex")) {//TODO: fix this. why regexp not working!?
+                Pattern pattern = Pattern.compile(".*vertex.*");
+                Matcher matcher = pattern.matcher(line);
+                if (matcher.find()) {
                     final Double x, y, z;
-
-                    int firstIndex = line.lastIndexOf("x") + 1;
-                    int secondLastIndex = line.indexOf(" ", firstIndex + 1);
-                    int thirdLastIndex = line.indexOf(" ", secondLastIndex + 1);
-                    x = Double.parseDouble(line.substring(firstIndex, secondLastIndex));
-                    y = Double.parseDouble(line.substring(secondLastIndex, thirdLastIndex));
-                    z = Double.parseDouble(line.substring(thirdLastIndex));
+                    Matcher vertexMatcher = Pattern.compile("(-?\\d+\\.?\\d*\\w?\\p{Punct}*\\d*)").matcher(line);
+                    vertexMatcher.find();
+                    x = Double.parseDouble(vertexMatcher.group());
+                    vertexMatcher.find();
+                    y = Double.parseDouble(vertexMatcher.group());
+                    vertexMatcher.find();
+                    z = Double.parseDouble(vertexMatcher.group());
                     vertexes.add(new Dot(x, y, z));
                 }
 

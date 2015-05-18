@@ -24,5 +24,6 @@
     <orderEntry type="library" name="org.easytesting:fest-assert-core:2.0M10" level="project" />
     <orderEntry type="library" name="ru.lanwen.verbalregex:java-verbal-expressions:1.2" level="project" />
     <orderEntry type="library" name="evoj-3.0" level="project" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.3.1" level="project" />
   </component>
 </module>

@@ -1,5 +1,7 @@
 package com.a.stepanenko.slime.octree;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -10,8 +12,11 @@ import java.util.ArrayList;
  * Created by Anatoliy on 12.05.2015.
  */
 public class Octree {
+    @Expose(serialize = false, deserialize = false)
     private static final Logger log = Logger.getLogger(Octree.class);
+    @SerializedName("Root node")
     private Node root;
+    @Expose(serialize = false, deserialize = false)
     private ArrayList<Polygon> polygons;
 
     public Node getRoot() {
