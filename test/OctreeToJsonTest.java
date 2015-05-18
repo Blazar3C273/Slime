@@ -33,7 +33,7 @@ public class OctreeToJsonTest {
                 registerTypeAdapter(Octree.class, new OctreeSerialization()).
                 excludeFieldsWithModifiers().
                 registerTypeAdapter(Dot.class, new DotSerializator()).create();
-        Octree octree = OctreeFactory.makeOctree(StlLoader.getVertices(Paths.get(TEST_FILE)));
+        Octree octree = OctreeFactory.makeOctree(StlLoader.getVertices(Paths.get(TEST_FILE)), TEST_FILE);
         String json = gson.toJson(octree);
         Path path = Paths.get(TEST_FILE_LOG);
         BufferedWriter writer = Files.newBufferedWriter(path, Charset.defaultCharset());

@@ -18,6 +18,7 @@ public class Octree {
     private Node root;
     @Expose(serialize = false, deserialize = false)
     private ArrayList<Polygon> polygons;
+    private String fileName;
 
     public Node getRoot() {
         return root;
@@ -30,5 +31,13 @@ public class Octree {
     @Override
     public String toString() {
         return root.toString();
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

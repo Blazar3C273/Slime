@@ -18,32 +18,18 @@ public class OctreeSerialization implements JsonSerializer<Octree> {
     public JsonElement serialize(Octree octree, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject result = new JsonObject();
 
-        ArrayList<Node> nodes = new ArrayList<>();
-
-        nodes.add(octree.getRoot());
-
-        int previousIterationArraySize = 0;
-
-        while (previousIterationArraySize != nodes.size()) {
-            int tmp = previousIterationArraySize;
-
-            previousIterationArraySize = nodes.size();
-
-            for (int i = tmp; i < previousIterationArraySize; i++) {
-                Node localNode = nodes.get(i);
-                nodes.addAll(localNode.getChildNodes() == null ? new ArrayList<>() : localNode.getChildNodes());
-            }
-        }
+        ArrayList<Node> nodes = OctreeFactory.getNodesAsArrayList(octree);
 
         JsonArray jsonElement = new JsonArray();
         for (Node node : nodes) {
             jsonElement.add(jsonSerializationContext.serialize(node));
         }
-
+        result.add("fileName", jsonSerializationContext.serialize(octree.getFileName()));
         result.add("nodesAmount", jsonSerializationContext.serialize(nodes.size()));
         result.add("rootNode", jsonSerializationContext.serialize(octree.getRoot()));
         result.add("nodesList", jsonElement);
 
         return result;
     }
+
 }

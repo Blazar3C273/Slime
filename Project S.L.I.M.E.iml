@@ -25,5 +25,6 @@
     <orderEntry type="library" name="ru.lanwen.verbalregex:java-verbal-expressions:1.2" level="project" />
     <orderEntry type="library" name="evoj-3.0" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.3.1" level="project" />
+    <orderEntry type="library" name="org.freemarker:freemarker:2.3.20" level="project" />
   </component>
 </module>

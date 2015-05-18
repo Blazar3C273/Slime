@@ -26,7 +26,7 @@ public class OctreeFactoryTest {
 
     @Test
     public void testMakeOctree() throws Exception {
-        Octree octree = OctreeFactory.makeOctree(StlLoader.getVertices(Paths.get(TEST_FILE2)));
+        Octree octree = OctreeFactory.makeOctree(StlLoader.getVertices(Paths.get(TEST_FILE2)), TEST_FILE2);
         log.debug(octree.toString());
     }
 
