@@ -1,0 +1,157 @@
+JFDML JFormDesigner: "5.2.1.0.138" Java: "1.8.0_40" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundleName": "AlghorithmFormStrings"
+	"i18n.keyPrefix": "GATuningFrame"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"title": new FormMessage( null, "GATuningFrame.this.title" )
+			"minimumSize": new java.awt.Dimension( 470, 400 )
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabPanel"
+				"minimumSize": new java.awt.Dimension( 470, 400 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+					"columns": 1
+					"rows": 4
+				} ) {
+					name: "reproductionPanel"
+					add( new FormComponent( "com.jformdesigner.designer.wrapper.VSpacer" ) {
+						name: "vSpacer2"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel11"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label3"
+							"text": new FormMessage( null, "GATuningFrame.label3.text" )
+						} )
+						add( new FormComponent( "javax.swing.JComboBox" ) {
+							name: "reproductionTypeComboBox"
+							"model": new javax.swing.DefaultComboBoxModel {
+								selectedItem: "Элитная схема"
+								addElement( "Элитная схема" )
+								addElement( "Последовательная схема" )
+							}
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel12"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label4"
+							"text": new FormMessage( null, "GATuningFrame.label4.text" )
+						} )
+						add( new FormComponent( "javax.swing.JSpinner" ) {
+							name: "populationSizeSpinner"
+							"model": new javax.swing.SpinnerNumberModel {
+								minimum: 10
+								stepSize: 10
+								value: 10
+							}
+						} )
+					} )
+					add( new FormComponent( "com.jformdesigner.designer.wrapper.VSpacer" ) {
+						name: "vSpacer1"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": new FormMessage( null, "GATuningFrame.reproductionPanel.tab.title" )
+					"background": sfield java.awt.Color darkGray
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "creatingPopulationPanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "creatingPopulationOptionPanel"
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "panel13"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label1"
+							"text": new FormMessage( null, "GATuningFrame.label1.text" )
+						} )
+						add( new FormComponent( "javax.swing.JComboBox" ) {
+							name: "strategicComboBox"
+							"model": new javax.swing.DefaultComboBoxModel {
+								selectedItem: "Эвристика"
+								addElement( "Эвристика" )
+								addElement( "Дробовик" )
+								addElement( "Фокусировка" )
+							}
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "North"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": new FormMessage( null, "GATuningFrame.creatingPopulationPanel.tab.title" )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+					name: "goPanel"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+						name: "panel9"
+						"border": new javax.swing.border.EmptyBorder( 5, 5, 5, 5 )
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane1"
+							add( new FormComponent( "javax.swing.JList" ) {
+								name: "goList"
+								"model": new javax.swing.DefaultListModel {
+									addElement( "Кроссинговер" )
+									addElement( "Мутация" )
+									addElement( "Селекция" )
+								}
+							} )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "Center"
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+							name: "panel10"
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "addGoButton"
+								"text": new FormMessage( null, "GATuningFrame.addGoButton.text" )
+							} )
+							add( new FormComponent( "javax.swing.JButton" ) {
+								name: "delateGobutton"
+								"text": new FormMessage( null, "GATuningFrame.delateGobutton.text" )
+							} )
+						}, new FormLayoutConstraints( class java.lang.String ) {
+							"value": "South"
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+						name: "goOptionsPanel"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": new FormMessage( null, "GATuningFrame.goPanel.tab.title" )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+					name: "traceOptionPanel"
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "label6"
+						"text": new FormMessage( null, "GATuningFrame.label6.text" )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": new FormMessage( null, "GATuningFrame.traceOptionPanel.tab.title" )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+				name: "okCancelButtonsPanel"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button3"
+					"text": new FormMessage( null, "GATuningFrame.button3.text" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button4"
+					"text": new FormMessage( null, "GATuningFrame.button4.text" )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "South"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 435, 330 )
+		} )
+	}
+}

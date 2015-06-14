@@ -25,20 +25,16 @@ public class TriangleCubeOverlapTester {
      */
 
     private static float[] cross(float[] v1, float[] v2) {
-        float[] result;
-        result = new float[]{v1[1] * v2[2] - v1[2] * v2[1],
+        return new float[]{v1[1] * v2[2] - v1[2] * v2[1],
                 v1[2] * v2[0] - v1[0] * v2[2],
-                v1[0] * v2[1] - v1[1] * v2[0]
-        };
-        return result;
+                v1[0] * v2[1] - v1[1] * v2[0]};
     }
 
     private static float[] sub(float[] v1, float[] v2) {
-        float[] result;
-        result = new float[]{v1[0] - v2[0],
+        return new float[]{v1[0] - v2[0],
                 v1[1] - v2[1],
                 v1[2] - v2[2]};
-        return result;
+
     }
 
     private static float[] findMinMax(float v, float v1, float v2) {
@@ -133,8 +129,8 @@ public class TriangleCubeOverlapTester {
         float[] v0 = new float[3];
         float[] v1 = new float[3];
         float[] v2 = new float[3];
-        //   float axis[3];
-        float min; // -NJMP- "d" local variable removed
+
+        float min;
         float max;
         float p0;
         float p1;

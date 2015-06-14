@@ -1,0 +1,134 @@
+JFDML JFormDesigner: "5.2.1.0.138" Java: "1.8.0_40" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundleName": "AlghorithmFormStrings"
+	"i18n.keyPrefix": "AlghorithmPropertiesFrame"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"title": new FormMessage( null, "AlghorithmPropertiesFrame.this.title" )
+			"$locationPolicy": 1
+			"$sizePolicy": 1
+			"minimumSize": new java.awt.Dimension( 280, 200 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+				"columns": 1
+				"rows": 6
+			} ) {
+				name: "panel5"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": new FormMessage( null, "AlghorithmPropertiesFrame.label1.text" )
+					"border": &EmptyBorder0 new javax.swing.border.EmptyBorder( 0, 5, 0, 5 )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "panel1"
+					"border": &BevelBorder0 new javax.swing.border.BevelBorder( 0, null, null, null, sfield java.awt.Color gray )
+					"foreground": sfield java.awt.Color darkGray
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "loadSchematicsButton"
+						"text": new FormMessage( null, "AlghorithmPropertiesFrame.loadSchematicsButton.text" )
+						"opaque": false
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Before"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "loadSchematicsStatuslabel"
+						"text": new FormMessage( null, "AlghorithmPropertiesFrame.loadSchematicsStatuslabel.text" )
+						"border": #EmptyBorder0
+						"horizontalAlignment": 0
+						"horizontalTextPosition": 0
+						"minimumSize": new java.awt.Dimension( 86, 14 )
+						"foreground": new java.awt.Color( 102, 204, 0, 255 )
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "After"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": new FormMessage( null, "AlghorithmPropertiesFrame.label3.text" )
+					"border": #EmptyBorder0
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "panel2"
+					"border": #BevelBorder0
+					"foreground": sfield java.awt.Color darkGray
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "loadCaseButton"
+						"text": new FormMessage( null, "AlghorithmPropertiesFrame.loadCaseButton.text" )
+						"opaque": false
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Before"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "loadCaseStatusLabel"
+						"text": new FormMessage( null, "AlghorithmPropertiesFrame.loadCaseStatusLabel.text" )
+						"border": #EmptyBorder0
+						"horizontalAlignment": 0
+						"minimumSize": new java.awt.Dimension( 86, 14 )
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "After"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": new FormMessage( null, "AlghorithmPropertiesFrame.label5.text" )
+					"border": #EmptyBorder0
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "panel3"
+					"border": #BevelBorder0
+					"foreground": sfield java.awt.Color darkGray
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+						name: "buttonPanel2"
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "loadGaSettingsButton"
+							"text": new FormMessage( null, "AlghorithmPropertiesFrame.loadGaSettingsButton.text" )
+							"opaque": false
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "createGaSettingsButton"
+							"text": new FormMessage( null, "AlghorithmPropertiesFrame.createGaSettingsButton.text" )
+							"opaque": false
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Before"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "gaSettingsStatus"
+						"text": new FormMessage( null, "AlghorithmPropertiesFrame.gaSettingsStatus.text" )
+						"border": #EmptyBorder0
+						"horizontalAlignment": 0
+						"minimumSize": new java.awt.Dimension( 86, 14 )
+						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "After"
+					} )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) ) {
+				name: "buttonPanel"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "saveButton"
+					"text": new FormMessage( null, "AlghorithmPropertiesFrame.saveButton.text" )
+					"opaque": false
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "nextButton"
+					"text": new FormMessage( null, "AlghorithmPropertiesFrame.nextButton.text" )
+					"opaque": false
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Last"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 300, 200 )
+		} )
+	}
+}

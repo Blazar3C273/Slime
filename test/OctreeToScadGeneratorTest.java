@@ -18,11 +18,11 @@ import java.nio.file.Paths;
 @RunWith(JUnit4.class)
 public class OctreeToScadGeneratorTest {
     private static final Logger log = Logger.getLogger(OctreeToScadGeneratorTest.class);
-    private static final String SCAD_FILE = "./bunny.scad";
+    private static final String SCAD_FILE = "./case.scad";
 
     @Test
     public void testTemplater() throws Exception {
-        String fileName = "./test/stl's/bunnyMidSTL.stl";
+        String fileName = "./test/stl's/testFitness.stl";
         String scad = OctreeToScadGenerator.generateToFile(OctreeFactory.makeOctree(StlLoader.getVertices(Paths.get(fileName)), fileName));
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(SCAD_FILE), Charset.defaultCharset());
         writer.write(scad);

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Anatoliy on 15.05.2015.
  */
 public class OctreeFactory {
-    static final short MAX_DEEP_LEVEL = 6; //TODO: tweak this value.
+    static final short MAX_DEEP_LEVEL = 5; //TODO: tweak this value.
     private static final Logger log = Logger.getLogger(OctreeFactory.class);
 
     public static Octree makeOctree(ArrayList<Dot> vertices, String fileName) throws Exception {
@@ -27,12 +27,30 @@ public class OctreeFactory {
         Node rootNode = new Node(Node.Type.GRAY, null, MAX_DEEP_LEVEL, surroundingCube.getCubeCenter(), ((float) surroundingCube.edgeLength));
 
         result.setRoot(rootNode);
-        generateChildNodes(polygons, rootNode);
+        ArrayList<Node> pool = new ArrayList<>();
+        pool.add(rootNode);
+        ArrayList<Node> toRemovePool = new ArrayList<>();
+        ArrayList<Node> newPool = new ArrayList<>();
+
+        while (!pool.isEmpty()) {
+            pool.parallelStream().forEach(node -> {
+                try {
+                    generateChildNodes(polygons, node, newPool);
+                    toRemovePool.add(node);
+                } catch (Exception e) {
+                    log.error(e);
+                }
+            });
+            pool.removeAll(toRemovePool);
+            toRemovePool.clear();
+            pool.addAll(newPool);
+            newPool.clear();
+        }
         result.setFileName(fileName);
         return result;
     }
 
-    private static void generateChildNodes(ArrayList<Polygon> polygons, Node parentNode) throws Exception {
+    private static void generateChildNodes(ArrayList<Polygon> polygons, Node parentNode, ArrayList<Node> pool) throws Exception {
         if (parentNode.getType() == Node.Type.GRAY && parentNode.getDeepLevel() >= 0) {
             ArrayList<Node> nodes = new ArrayList<>();
             parentNode.setChildNodes(nodes);
@@ -49,12 +67,11 @@ public class OctreeFactory {
                         length));
             }
             nodes.parallelStream().filter(node -> node.getType() == Node.Type.GRAY).forEach(node1 -> {
-                try {
-                    generateChildNodes(polygons, node1);
-                } catch (Exception e) {
-                    log.error("Some exception when algorithm generate nodes.", e);
+                synchronized (pool) {
+                    if (node1 != null) pool.add(node1);
                 }
             });
+
         }
     }
 
@@ -78,12 +95,8 @@ public class OctreeFactory {
     public static Node.Type getNodeType(ArrayList<Polygon> polygons, Dot center, float length) {
         float[] boxhalfsize = {length / 2, length / 2, length / 2,};
         float[] dotAsFloat = center.getDotAsFloat();
-        for (Polygon polygon : polygons) {
-            if (TriangleCubeOverlapTester.triBoxOverlap(dotAsFloat, boxhalfsize, polygon.getDotsAsFloat())) {
+        if (polygons.parallelStream().anyMatch(polygon -> TriangleCubeOverlapTester.triBoxOverlap(dotAsFloat, boxhalfsize, polygon.getDotsAsFloat())))
                 return Node.Type.GRAY;
-            }
-        }
-
         return Node.Type.WHITE;
     }
 

@@ -22,6 +22,7 @@ public class Dot {
     @Expose
     @SerializedName("z")
     public final Double z;
+    private final float[] floats;
 
 
     public Dot(@NotNull Double x, @NotNull Double y, @NotNull Double z) {
@@ -33,6 +34,7 @@ public class Dot {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.floats = new float[]{x.floatValue(), y.floatValue(), z.floatValue()};
     }
 
     @Override
@@ -69,6 +71,6 @@ public class Dot {
     }
 
     public float[] getDotAsFloat() {
-        return new float[]{x.floatValue(), y.floatValue(), z.floatValue()};
+        return floats;
     }
 }

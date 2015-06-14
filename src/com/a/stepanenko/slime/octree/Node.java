@@ -28,7 +28,7 @@ public class Node {
      * @param deepLevel
      * @param _length  */
 
-    public Node(Type type, Node _parent, short deepLevel, Dot nodeCenter, float _length) throws Exception {
+    public Node(Type type, Node _parent, short deepLevel, Dot nodeCenter, float _length) {
             this.parent = _parent;
             this.length = _length;
             this.center = nodeCenter;

@@ -11,9 +11,11 @@ import org.apache.log4j.Logger;
 public class Polygon {
     private static final Logger log = Logger.getLogger(Polygon.class);
     private final Dot[] dots;
+    private float[][] floats;
 
     public Polygon(Dot[] dots) {
         this.dots = dots;
+        this.floats = new float[][]{dots[0].getDotAsFloat(), dots[1].getDotAsFloat(), dots[2].getDotAsFloat()};
     }
 
     public Dot[] getDots() {
@@ -21,6 +23,6 @@ public class Polygon {
     }
 
     public float[][] getDotsAsFloat() {
-        return new float[][]{dots[0].getDotAsFloat(), dots[1].getDotAsFloat(), dots[2].getDotAsFloat()};
+        return floats;
     }
 }
